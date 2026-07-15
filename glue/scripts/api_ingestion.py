@@ -1,16 +1,19 @@
 import boto3
-
 import requests
-
 import base64
-
 from botocore.exceptions import NoCredentialsError, PartialCredentialsError
+
+import sys
+from awsglue.utils import getResolvedOptions
+
+args = getResolvedOptions(sys.argv, ["bucket_name"])
+bucket_name = args["bucket_name"]
 
 # Example usage
 
 github_url = "https://raw.githubusercontent.com/deacademygit/project-data/refs/heads/main/country_details.json"  # Raw file URL from GitHub
 
-bucket_name = "your_bucket_name"  # The S3 bucket where the file will be uploaded
+#bucket_name = "your_bucket_name"  # The S3 bucket where the file will be uploaded
 
 s3_key = "data/country_details.json"  # The key (path) in the S3 bucket
 
